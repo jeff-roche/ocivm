@@ -71,6 +71,6 @@ func printVersionList(versions []string, current string) {
 			currentLabel = " (current)"
 		}
 
-		fmt.Printf(" - %s%s\n", ver, currentLabel)
+		fmt.Printf("%s%s\n", ver, currentLabel)
 	}
 }

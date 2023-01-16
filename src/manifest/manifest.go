@@ -97,7 +97,6 @@ func (m *VersionManifest) Installed(ver string) bool {
 	}
 
 	for _, lv := range m.LocalVersions {
-		fmt.Println(lv)
 		if lv == ver {
 			return true
 		}

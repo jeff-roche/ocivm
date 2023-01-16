@@ -1,6 +1,5 @@
 /*
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -13,20 +12,15 @@ import (
 // uninstallCmd represents the uninstall command
 var uninstallCmd = &cobra.Command{
 	Use:   "uninstall",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Uninstall a specific version of the openshift installer",
+	Long:  "Uninstall a specific version of the openshift installer",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("uninstall called")
+		fmt.Println("ERROR - Not implemented yet")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(uninstallCmd)
+	//rootCmd.AddCommand(uninstallCmd)
 
 	// Here you will define your flags and configuration settings.
 

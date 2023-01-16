@@ -1,11 +1,9 @@
-/*
-Copyright © 2023 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
 	"fmt"
+	"ocivm/src/manager"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -13,15 +11,20 @@ import (
 // useCmd represents the use command
 var useCmd = &cobra.Command{
 	Use:   "use",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Set the active version of the installer",
+	Long:  "Set the active version of the installer",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("use called")
+		if len(args) != 1 {
+			fmt.Printf("1 and only 1 version may be specified. Got %s\n", args)
+			os.Exit(1)
+		}
+
+		if err := manager.UseVersion(args[0], &PrimaryManifest); err != nil {
+			fmt.Printf("unable to set the active version to %s: %s\n", args[0], err)
+			os.Exit(1)
+		}
+
+		fmt.Printf("Successfully activated openshift-install version %s\n", args[0])
 	},
 }
 
