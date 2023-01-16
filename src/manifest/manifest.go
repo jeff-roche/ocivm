@@ -70,24 +70,54 @@ func (m *VersionManifest) fetchRemoteVersions() error {
 }
 
 func (m *VersionManifest) ListVersions(current, remote bool) {
+	// Current version marking
+	currentVer := ""
+	if current {
+		currentVer = m.CurrentVersion
+	}
+
 	// Do we need to fetch what versions are available on the remote?
 	if remote {
 		if err := m.fetchRemoteVersions(); err != nil {
 			fmt.Printf("unable to update remote listing: %s\n", err)
 			os.Exit(1)
 		}
+
+		fmt.Println("Available Versions:")
+		printVersionList(m.RemoteVersions, currentVer)
 	} else {
 		fmt.Println("Installed versions:")
-		for _, ver := range m.LocalVersions {
-			verStr := ver
+		printVersionList(m.LocalVersions, currentVer)
+	}
+}
 
-			if current && ver == m.CurrentVersion {
-				verStr = fmt.Sprintf("%s (current)", ver)
-			}
+func (m *VersionManifest) Installed(ver string) bool {
+	if len(m.LocalVersions) == 0 {
+		m.RefreshVersionInfo()
+	}
 
-			fmt.Println(verStr)
+	for _, lv := range m.LocalVersions {
+		fmt.Println(lv)
+		if lv == ver {
+			return true
 		}
 	}
+
+	return false
+}
+
+func (m *VersionManifest) ValidVersion(ver string) bool {
+	if len(m.RemoteVersions) == 0 {
+		m.fetchRemoteVersions()
+	}
+
+	for _, rv := range m.RemoteVersions {
+		if rv == ver {
+			return true
+		}
+	}
+
+	return false
 }
 
 // getLocalVersions will check the local

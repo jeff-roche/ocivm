@@ -63,3 +63,14 @@ func parseHtmlPageForVersionNumbers(root *html.Node, versions *[]string) {
 		parseHtmlPageForVersionNumbers(c, versions)
 	}
 }
+
+func printVersionList(versions []string, current string) {
+	for _, ver := range versions {
+		currentLabel := ""
+		if current != "" && ver == current {
+			currentLabel = " (current)"
+		}
+
+		fmt.Printf(" - %s%s\n", ver, currentLabel)
+	}
+}
