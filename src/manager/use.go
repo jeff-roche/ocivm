@@ -2,8 +2,9 @@ package manager
 
 import (
 	"fmt"
-	"ocivm/src/manifest"
 	"os"
+
+	"github.com/jeff-roche/ocivm/src/manifest"
 )
 
 // UseVersion will switch the currently active version to a new one

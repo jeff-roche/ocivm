@@ -1,4 +1,4 @@
-module ocivm
+module github.com/jeff-roche/ocivm
 
 go 1.19
 

@@ -5,8 +5,9 @@ package cmd
 
 import (
 	"fmt"
-	"ocivm/src/manifest"
 	"os"
+
+	"github.com/jeff-roche/ocivm/src/manifest"
 
 	"github.com/spf13/cobra"
 )

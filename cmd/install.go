@@ -5,9 +5,10 @@ package cmd
 
 import (
 	"fmt"
-	"ocivm/src/installer"
 	"os"
 	"strings"
+
+	"github.com/jeff-roche/ocivm/src/installer"
 
 	"github.com/spf13/cobra"
 )

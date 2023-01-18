@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"ocivm/src/manifest"
 	"os"
 	"runtime"
+
+	"github.com/jeff-roche/ocivm/src/manifest"
 )
 
 var installerBaseUrlx86 = "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp"

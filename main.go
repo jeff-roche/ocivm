@@ -1,6 +1,6 @@
 package main
 
-import "ocivm/cmd"
+import "github.com/jeff-roche/ocivm/cmd"
 
 func main() {
 	cmd.Execute()

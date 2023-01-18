@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"ocivm/src/manager"
 	"os"
+
+	"github.com/jeff-roche/ocivm/src/manager"
 
 	"github.com/spf13/cobra"
 )
