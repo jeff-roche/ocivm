@@ -5,7 +5,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
+	"github.com/jeff-roche/ocivm/src/installer"
 	"github.com/spf13/cobra"
 )
 
@@ -15,20 +17,20 @@ var uninstallCmd = &cobra.Command{
 	Short: "Uninstall a specific version of the openshift installer",
 	Long:  "Uninstall a specific version of the openshift installer",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("ERROR - Not implemented yet")
+		if len(args) == 0 {
+			fmt.Println("no version specified")
+			os.Exit(1)
+		}
+
+		for _, ver := range args {
+			if err := installer.UninstallIfInstalled(ver, &PrimaryManifest); err != nil {
+				fmt.Printf("unable to uninstall version \"%s\": %s\n", ver, err)
+				os.Exit(1)
+			}
+		}
 	},
 }
 
 func init() {
-	//rootCmd.AddCommand(uninstallCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// uninstallCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// uninstallCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.AddCommand(uninstallCmd)
 }

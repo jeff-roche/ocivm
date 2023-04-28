@@ -31,7 +31,7 @@ func GetNewInstaller(requestedVer string, activeManifest *manifest.VersionManife
 	}
 
 	// Make the destination folder
-	dest := fmt.Sprintf("%s/versions/%s", manifest.LocalFolderPath, requestedVer)
+	dest, _ := getVersionFolderPath(requestedVer, activeManifest)
 	os.Mkdir(dest, 0755)
 
 	if err := extractInstallerToFolder(dest, archive); err != nil {

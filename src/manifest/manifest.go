@@ -110,6 +110,13 @@ func (m *VersionManifest) ValidVersion(ver string) bool {
 		m.fetchRemoteVersions()
 	}
 
+	// Check the local versions first to see if it is installed
+	for _, lv := range m.LocalVersions {
+		if lv == ver {
+			return true
+		}
+	}
+
 	for _, rv := range m.RemoteVersions {
 		if rv == ver {
 			return true
