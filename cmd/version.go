@@ -18,9 +18,9 @@ var versionCmd = &cobra.Command{
 	Short: "Release version information",
 	Long:  `Display the release version information for this tool`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Openshift Installer Version Manager")
+		fmt.Println("Openshift CLI Tools Version Manager")
 		fmt.Printf("Version %s %s/%s\n", RELEASE_VERSION, runtime.GOOS, runtime.GOARCH)
-		fmt.Printf("Current Installer Version %s\n", PrimaryManifest.CurrentVersion)
+		fmt.Printf("Current Openshift Version %s\n", PrimaryManifest.CurrentVersion)
 	},
 }
 

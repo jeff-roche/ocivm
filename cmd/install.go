@@ -16,8 +16,8 @@ import (
 // installCmd represents the install command
 var installCmd = &cobra.Command{
 	Use:   "install",
-	Short: "install the specified openshift-installer",
-	Long:  "install the specified openshift-installer optionally passing a space delimited list of versions to install",
+	Short: "install the specified openshift tools",
+	Long:  "install the specified openshift tools optionally passing a space delimited list of versions to install",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			fmt.Println("no version specified")
@@ -26,7 +26,7 @@ var installCmd = &cobra.Command{
 
 		// Loop over each version specified
 		for _, v := range args {
-			if err := installer.GetNewInstaller(strings.TrimSpace(v), &PrimaryManifest); err != nil {
+			if err := installer.GetNewBinaries(strings.TrimSpace(v), &PrimaryManifest); err != nil {
 				fmt.Printf("unable to install version %s: %s\n", v, err)
 				os.Exit(1)
 			}

@@ -13,18 +13,22 @@ func UseVersion(ver string, m *manifest.VersionManifest) error {
 		return fmt.Errorf("requested version %s is not installed", ver)
 	}
 
-	// basedir/current/openshift-install
-	originalPath := fmt.Sprintf("%s/versions/%s/openshift-install", manifest.LocalFolderPath, ver)
-	currentLink := fmt.Sprintf("%s/current/openshift-install", manifest.LocalFolderPath)
+	bins := []string{"oc", "kubectl", "openshift-install"}
 
-	// Remove the old link
-	if _, err := os.Lstat(currentLink); err == nil {
-		os.Remove(currentLink)
-	}
+	for _, bin := range bins {
+		// basedir/current/bin-name
+		originalPath := fmt.Sprintf("%s/versions/%s/%s", manifest.LocalFolderPath, ver, bin)
+		currentLink := fmt.Sprintf("%s/current/%s", manifest.LocalFolderPath, bin)
 
-	// Make the new link
-	if err := os.Link(originalPath, currentLink); err != nil {
-		return err
+		// Remove the old link
+		if _, err := os.Lstat(currentLink); err == nil {
+			os.Remove(currentLink)
+		}
+
+		// Make the new link
+		if err := os.Link(originalPath, currentLink); err != nil {
+			return err
+		}
 	}
 
 	// Update the .version file

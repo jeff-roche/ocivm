@@ -14,8 +14,8 @@ import (
 // uninstallCmd represents the uninstall command
 var uninstallCmd = &cobra.Command{
 	Use:   "uninstall",
-	Short: "Uninstall a specific version of the openshift installer",
-	Long:  "Uninstall a specific version of the openshift installer",
+	Short: "Uninstall a specific version of the openshift tools",
+	Long:  "Uninstall a specific version of the openshift tools",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			fmt.Println("no version specified")

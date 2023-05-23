@@ -12,8 +12,8 @@ import (
 // useCmd represents the use command
 var useCmd = &cobra.Command{
 	Use:   "use",
-	Short: "Set the active version of the installer",
-	Long:  "Set the active version of the installer",
+	Short: "Set the active version of the tools",
+	Long:  "Set the active version of the tools",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) != 1 {
 			fmt.Printf("1 and only 1 version may be specified. Got %s\n", args)
@@ -25,7 +25,7 @@ var useCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		fmt.Printf("Successfully activated openshift-install version %s\n", args[0])
+		fmt.Printf("Successfully activated openshift cli tools version %s\n", args[0])
 	},
 }
 

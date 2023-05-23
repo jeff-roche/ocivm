@@ -10,8 +10,8 @@ import (
 // listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "list available versions of the openshift-installer",
-	Long:  "list available versions of the openshift-installer",
+	Short: "list available versions of the openshift cli tools",
+	Long:  "list available versions of the openshift cli tools",
 	Run: func(cmd *cobra.Command, args []string) {
 		current, _ := cmd.Flags().GetBool("current")
 		remote, _ := cmd.Flags().GetBool("remote")
